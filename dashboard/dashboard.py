@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # Dataframe contoh (gantilah dengan data Anda)
 url = 'https://raw.githubusercontent.com/delyrafael/Proyek_Analyst_E-Commerce-/main/dashboard/main_data.csv'
-data = pd.read_csv(url, index_col=0)
+data = pd.read_csv(url)
 
 
 # Judul halaman
@@ -23,6 +23,7 @@ def Home():
     mostMonetary = float(pd.Series(data['monetary']).max()) 
     mostCity = data['customer_city'].value_counts().idxmax()
 
+    #membuat kolom pada header
     total1,total2,total3,total4,total5=st.columns(5,gap='small')
     with total1:
         st.info('Total Custommer',icon="👤")
@@ -79,11 +80,11 @@ def RateCustomer():
     hightScore = ratingCus.idxmax()
     cmap = plt.get_cmap("Blues")
 
-    # Create a bar chart with different colors for the highest value
-    fig, ax = plt.subplots(figsize=(12, 7))  # Create a Figure and Axes object
+    # Membuat Barchar dengan warna berbeda pada value tertinggi
+    fig, ax = plt.subplots(figsize=(12, 7)) 
     ax.bar(range(1, len(ratingCus.values) + 1), ratingCus.values, color=cmap(ratingCus.values / max(ratingCus.values)))
 
-    # Add value labels to each bar
+    # menambahkan label pada value
     for i in range(len(ratingCus.values)):
         ax.text(i + 1, ratingCus.values[i], str(ratingCus.values[i]), ha='center', va='bottom')
 
@@ -95,13 +96,11 @@ def RateCustomer():
     plt.xlabel("Rate")
     plt.ylabel("Customer")
     plt.xticks(fontsize=12)
-
-    # Display the plot in Streamlit
     st.pyplot(fig)
 
 
-# Call the function
-# Home()
+# memanggil fungsi
+Home()
 col1, col2 = st.columns(2)
 with col1:
     MostProduct()
