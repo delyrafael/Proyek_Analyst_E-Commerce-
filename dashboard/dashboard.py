@@ -7,7 +7,7 @@ matplotlib.use('Agg')  # Atau 'Cairo'
 import matplotlib.pyplot as plt
 
 # Dataframe contoh (gantilah dengan data Anda)
-data = pd.read_csv(r"C:\Users\delyr\Documents\python\E-commerce_clean_data.csv")
+data = pd.read_csv("main_data.csv")
 
 
 # Judul halaman
